@@ -1,0 +1,6 @@
+pandas
+requests
+nltk
+vaderSentiment
+scikit-learn
+python-dotenv
