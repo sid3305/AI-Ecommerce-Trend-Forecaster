@@ -1,36 +1,41 @@
 import pandas as pd
 import os
 
-print("Calculating Brand-Level Daily Sentiment Index...")
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+def run_brand_daily_index():
 
-input_path = os.path.join(BASE_DIR, "data", "processed", "finbert_output.csv")
-output_path = os.path.join(BASE_DIR, "data", "processed", "brand_daily_sentiment_index.csv")
+    print("Calculating Brand-Level Daily Sentiment Index...")
 
-df = pd.read_csv(input_path)
+    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-# Convert date properly (use your actual column name)
-df["Published_Date"] = pd.to_datetime(df["Published_Date"])
-df["date"] = df["Published_Date"].dt.date
+    input_path = os.path.join(BASE_DIR, "data", "processed", "finbert_output.csv")
+    output_path = os.path.join(BASE_DIR, "data", "processed", "brand_daily_sentiment_index.csv")
 
-# Map sentiment labels to numeric
-mapping = {
-    "positive": 1,
-    "neutral": 0,
-    "negative": -1
-}
+    df = pd.read_csv(input_path)
 
-df["sentiment_score"] = df["finbert_label"].map(mapping)
+    df["Published_Date"] = pd.to_datetime(df["Published_Date"])
+    df["date"] = df["Published_Date"].dt.date
 
-# Group by date and brand
-brand_daily_index = (
-    df.groupby(["date", "Brand"])["sentiment_score"]
-    .mean()
-    .reset_index()
-)
+    mapping = {
+        "positive": 1,
+        "neutral": 0,
+        "negative": -1
+    }
 
-brand_daily_index.to_csv(output_path, index=False)
+    df["sentiment_score"] = df["finbert_label"].map(mapping)
 
-print("Brand-Level Daily Sentiment Index saved.")
-print(brand_daily_index.head())
+    brand_daily_index = (
+        df.groupby(["date", "Brand"])["sentiment_score"]
+        .mean()
+        .reset_index()
+    )
+
+    brand_daily_index.to_csv(output_path, index=False)
+
+    print("Brand-Level Daily Sentiment Index saved.")
+
+    return output_path
+
+
+if __name__ == "__main__":
+    run_brand_daily_index()

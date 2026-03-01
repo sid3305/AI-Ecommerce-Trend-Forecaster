@@ -1,32 +1,37 @@
 import pandas as pd
 import os
 
-print("Calculating Daily Sentiment Index...")
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+def run_daily_sentiment_index():
 
-input_path = os.path.join(BASE_DIR, "data", "processed", "finbert_output.csv")
-output_path = os.path.join(BASE_DIR, "data", "processed", "daily_sentiment_index.csv")
+    print("Calculating Daily Sentiment Index...")
 
-df = pd.read_csv(input_path)
+    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-# Convert published_at to date
-df["Published_Date"] = pd.to_datetime(df["Published_Date"])
-df["date"] = df["Published_Date"].dt.date
+    input_path = os.path.join(BASE_DIR, "data", "processed", "finbert_output.csv")
+    output_path = os.path.join(BASE_DIR, "data", "processed", "daily_sentiment_index.csv")
 
-# Convert sentiment to numeric score
-mapping = {
-    "positive": 1,
-    "neutral": 0,
-    "negative": -1
-}
+    df = pd.read_csv(input_path)
 
-df["sentiment_score"] = df["finbert_label"].map(mapping)
+    df["Published_Date"] = pd.to_datetime(df["Published_Date"])
+    df["date"] = df["Published_Date"].dt.date
 
-# Calculate daily average sentiment
-daily_index = df.groupby("date")["sentiment_score"].mean().reset_index()
+    mapping = {
+        "positive": 1,
+        "neutral": 0,
+        "negative": -1
+    }
 
-daily_index.to_csv(output_path, index=False)
+    df["sentiment_score"] = df["finbert_label"].map(mapping)
 
-print("Daily Sentiment Index saved.")
-print(daily_index.head())
+    daily_index = df.groupby("date")["sentiment_score"].mean().reset_index()
+
+    daily_index.to_csv(output_path, index=False)
+
+    print("Daily Sentiment Index saved.")
+
+    return output_path
+
+
+if __name__ == "__main__":
+    run_daily_sentiment_index()
