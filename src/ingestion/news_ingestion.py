@@ -4,6 +4,9 @@ import os
 from datetime import datetime
 from config import NEWS_API_KEY, ECOMMERCE_BRANDS
 
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
 
 def fetch_news_for_brands(brands, page_size=10):
     all_news = []
@@ -46,14 +49,11 @@ def fetch_news_for_brands(brands, page_size=10):
 
 
 def save_news_to_csv(df):
-    # Get project root directory
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../../"))
+    # Use the already defined BASE_DIR
+    save_dir = os.path.join(BASE_DIR, "data", "raw")
+    os.makedirs(save_dir, exist_ok=True)
 
-    # Create path data/raw
-    save_path = os.path.join(project_root, "../../data", "raw")
-    os.makedirs(save_path, exist_ok=True)
-
-    file_path = os.path.join(save_path, "../../data/raw/news_data.csv")
+    file_path = os.path.join(save_dir, "news_data.csv")
 
     df.to_csv(file_path, index=False)
     print(f"\nNews data saved to: {file_path}")
