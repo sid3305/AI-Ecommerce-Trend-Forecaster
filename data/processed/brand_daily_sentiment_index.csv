@@ -1,0 +1,45 @@
+date,Brand,sentiment_score
+2026-01-16,Ajio,0.5
+2026-01-19,Snapdeal,0.0
+2026-01-20,BigBasket,0.75
+2026-01-20,Snapdeal,0.25
+2026-01-22,BigBasket,-1.0
+2026-01-22,Snapdeal,0.0
+2026-01-26,Ajio,0.0
+2026-01-26,BigBasket,1.0
+2026-01-27,BigBasket,0.0
+2026-01-28,Snapdeal,0.0
+2026-01-29,Tata Cliq,1.0
+2026-02-02,BigBasket,0.0
+2026-02-04,Ajio,0.0
+2026-02-04,Tata Cliq,0.0
+2026-02-06,Meesho,1.0
+2026-02-09,BigBasket,-0.5
+2026-02-09,Myntra,1.0
+2026-02-09,Nykaa,0.0
+2026-02-10,Meesho,0.4
+2026-02-10,Myntra,0.0
+2026-02-10,Nykaa,0.6666666666666666
+2026-02-11,Ajio,1.0
+2026-02-11,Meesho,-1.0
+2026-02-11,Nykaa,1.0
+2026-02-11,Tata Cliq,1.0
+2026-02-12,Ajio,0.0
+2026-02-12,Flipkart,-1.0
+2026-02-12,Meesho,1.0
+2026-02-12,Myntra,0.0
+2026-02-12,Nykaa,0.5
+2026-02-13,Flipkart,0.0
+2026-02-13,Myntra,0.25
+2026-02-13,Nykaa,0.3333333333333333
+2026-02-13,Snapdeal,0.0
+2026-02-14,Flipkart,0.5
+2026-02-14,Meesho,-1.0
+2026-02-14,Myntra,1.0
+2026-02-15,Amazon India,-0.2
+2026-02-15,Flipkart,1.0
+2026-02-16,Ajio,0.0
+2026-02-16,Amazon India,-0.2
+2026-02-16,Flipkart,-0.5
+2026-02-16,Myntra,0.0
+2026-02-16,Reliance Digital,0.0
